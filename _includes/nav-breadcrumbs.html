@@ -1,7 +1,7 @@
 <nav class="breadcrumbs bootstrap hidden-sm-down">
    <ol class="breadcrumb list-unstyled" vocab="https://spaceanime.github.io/" typeof="BreadcrumbList">
 
-      {% for breadcrumbs %} 
+      {% for crumb in breadcrumbs %} 
          {% if forloop.first and site.breadcrumbs.root.image %}
          <li class="breadcrumb-item breadcrumb-item-icon" property="itemListElement" typeof="ListItem">
             <a property="item" typeof="WebPage" href="{{ crumb.url | relative_url }}">
