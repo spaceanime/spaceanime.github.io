@@ -1,6 +1,6 @@
-@import url(http://fonts.googleapis.com/css?family=Open+Sans);
-@import url(http://fonts.googleapis.com/css?family=Doppio+One);
-@import url(http://fonts.googleapis.com/css?family=Raleway);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import url(https://fonts.googleapis.com/css?family=Doppio+One);
+@import url(https://fonts.googleapis.com/css?family=Raleway);
 
 
 img, embed, object{
@@ -26,8 +26,8 @@ body {
 
 /*
 background-color: #F7F7F7;/*
-background-image: url('http://wpexplorer-demos.com/fabulous/wp-content/themes/wpex-fabulous/images/noise.png');
-background-image: url('http://cdn.elegantthemes.com/preview/Notebook/wp-content/themes/Notebook/images/body-bg.png');
+background-image: url('https://wpexplorer-demos.com/fabulous/wp-content/themes/wpex-fabulous/images/noise.png');
+background-image: url('https://cdn.elegantthemes.com/preview/Notebook/wp-content/themes/Notebook/images/body-bg.png');
 background-repeat: repeat;*/
 
 }
