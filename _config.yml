@@ -1,16 +1,26 @@
-permalink: /:categories/:title/
-url: "https://spaceanime.github.io/"
-full_name: "Сделано с &#128156;"
-first_name: "Аниме Космос"
+---
+title: Spaceanime.Github.Io
+timezone: UTC
+collections:
+  posts:
+    title: Posts
+    output: true
+  uploads:
+    title: Uploads
+    output: true
+permalink: "/:categories/:title/"
+url: https://spaceanime.github.io/
+full_name: Сделано с &#128156;
+first_name: Аниме Космос
 last_name: "/images/users/f.png"
-blog_title: "Аниме Космос"
+blog_title: Аниме Космос
 author_img_name_path: "/images/users/f.png"
-disqus_shortname: "animespace"
-copyright_year: "2019"
-google_analytics_code: ""
-aboutme: "I like ramen noodles with cream."
+disqus_shortname: animespace
+copyright_year: '2019'
+google_analytics_code: ''
+aboutme: I like ramen noodles with cream.
 plugins:
-  - jekyll-feed
-  - jekyll-paginate
-  - jekyll-sitemap
+- jekyll-feed
+- jekyll-paginate
+- jekyll-sitemap
 paginate: 9
