@@ -1,29 +1,22 @@
-module Jekyll
-   module Drops
-     class BreadcrumbItem < Liquid::Drop
-       extend Forwardable
- 
-       def initialize(side)
-         @side = side
-       end
- 
-       def position
-         @side[:position]
-       end
- 
-       def title
-         @side[:title]
-       end
- 
-       def url
-         @side[:url]
-       end
+module Drops
+  class BreadcrumbItem < Liquid::Drop
+    extend Forwardable
 
-       def rootimage
-         @side[:root_image]
-       end
-      
-     end
-   end
- end
- 
+    def_delegator :@page, :data
+    def_delegator :@page, :url
+
+    def initialize(page, payload)
+      @payload = payload
+      @page = page
+    end
+
+    def title
+      @page.data["breadcrumb"] != nil ? @page.data["breadcrumb"] : @page.data["title"]
+    end
+
+    def namespace
+      @page.data["namespace"]
+    end
+    
+  end
+end

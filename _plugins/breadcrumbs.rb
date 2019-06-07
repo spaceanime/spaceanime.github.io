@@ -1,82 +1,21 @@
 require_relative 'drops/breadcrumb_item.rb'
 
-module Jekyll
-  module Breadcrumbs
-    @@config = {}
-    @@siteAddress = ""
-    @@sideAddresses = {}
+Jekyll::Hooks.register [:pages, :documents], :pre_render do |side, payload|  # documents are collections, and collections include also posts
+  drop = Drops::BreadcrumbItem
 
-    def self.clearAddressCache
-      @@sideAddresses = {}
+  if side.url == "/"
+    then payload["breadcrumbs"] = [
+      drop.new(side, payload)
+    ]
+  else
+    payload["breadcrumbs"] = []
+    path = side.url.split("/")
+
+    0.upto(path.size - 1) do |int|
+      joined_path = path[0..int].join("/")
+      sides = [].concat(side.site.pages).concat(side.site.documents)
+      item = sides.find { |side_| joined_path == "" && side_.url == "/" || side_.url.chomp("/") == joined_path }
+      payload["breadcrumbs"] << drop.new(item, payload) if item
     end
-
-    def self.loadAddressCache(site)
-      clearAddressCache
-      site.documents.each { |page| addAddressItem(page.url, page['crumbtitle'] || page['title'] || '') } # collection files including posts
-      site.pages.each { |page| addAddressItem(page.url, page['crumbtitle'] || page['title'] || '') } # pages
-      site.posts.docs.each { |page| addAddressItem(page.url, page['crumbtitle'] || page['title'] || '') } # posts      
-    end
-
-    def self.addAddressItem(url, title)    
-      key = createAddressCacheKey(url)
-      @@sideAddresses[key] = {:url => url, :title => title}
-    end
-
-    def self.findAddressItem(path)
-      key = createAddressCacheKey(path)
-      @@sideAddresses[key] if key
-    end
-
-    def self.createAddressCacheKey(path)
-      path.chomp("/").empty? ? "/" : path.chomp("/")              
-    end
-
-    def self.buildSideBreadcrumbs(side, payload)
-      payload["breadcrumbs"] = []
-      return if side.url == @@siteAddress && root_hide === true
-
-      drop = Jekyll::Drops::BreadcrumbItem
-      position = 0
-
-      path = side.url.chomp("/").split(/(?=\/)/)
-      -1.upto(path.size - 1) do |int|
-         joined_path = int == -1 ? "" : path[0..int].join
-         item = findAddressItem(joined_path)
-         if item 
-            position += 1
-            item[:position] = position
-            item[:root_image] = root_image
-            payload["breadcrumbs"] << drop.new(item)
-         end
-      end
-    end
-
-   # Config
-   def self.loadConfig(site)
-      config = site.config["breadcrumbs"] || {"root" => {"hide" => false, "image" => false}} 
-      root = config["root"]
-      @@config[:root_hide] = root["hide"] || false
-      @@config[:root_image] = root["image"] || false
-
-      @@siteAddress = site.config["baseurl"] || "/"
-      @@siteAddress = "/" if @@siteAddress.empty?
-    end
-
-    def self.root_hide
-      @@config[:root_hide]
-   end
-
-   def self.root_image
-      @@config[:root_image]
-   end
   end
-end
-
-Jekyll::Hooks.register :site, :pre_render do |site, payload|
-   Jekyll::Breadcrumbs::loadConfig(site)
-  Jekyll::Breadcrumbs::loadAddressCache(site)
-end
-
-Jekyll::Hooks.register [:pages, :documents], :pre_render do |side, payload|
-  Jekyll::Breadcrumbs::buildSideBreadcrumbs(side, payload)
 end
