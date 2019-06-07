@@ -1,24 +1,6 @@
 <nav class="breadcrumbs bootstrap hidden-sm-down" {% if (page.url == '/') and (site.breadcrumbs.root.hide) %}{{ 'style="display: none;"' }}{% endif %}>
-  <ol class="breadcrumb list-unstyled" vocab="http://schema.org/" typeof="BreadcrumbList">
-    {% assign position = 1 %}
-    {% for crumbitem in breadcrumbs %}
-      {% assign position = position  | plus: 1 %}
-
-      {% if forloop.first and site.breadcrumbs.root.image %}
-        {% include icon.html class="breadcrumb-item" color=include.color %}
-        {% continue %}
-      {% endif %}
-
-      {% if forloop.last %}
-        <li class="breadcrumb-item" property="itemListElement" typeof="ListItem"><span property="name">{{ crumbitem.title }}</span><meta property="position" content="{{ position }}" /></li>
-        {% continue %}
-      {% endif %}
-
-      <li class="breadcrumb-item" property="itemListElement" typeof="ListItem">
-          <a property="item" typeof="WebPage" href="{{ crumbitem.url | prepend: site.baseurl }}"><span property="name">{{ crumbitem.title }}</span><meta property="position" content="{{ position }}" /></a>
-      </li>
-    {% endfor %}
-
+  <ol class="breadcrumb list-unstyled" vocab="http://schema.org/" typeof="BreadcrumbList">  
+    <a href="{{site.url}} ">Главная</a>/{{page.title}}
   </ol>
 </nav>
 
@@ -39,45 +21,19 @@ nav.breadcrumbs.bootstrap .breadcrumb {
   margin-bottom: 1rem;
   list-style: none;
   background-color: rgb(156, 101, 207);
+  color:rgb(215, 175, 253);
 }
-nav.breadcrumbs.bootstrap .breadcrumb::after {
-  content: "";
-  display: table;
-  clear: both;
-}
-nav.breadcrumbs.bootstrap .breadcrumb-item {
-  float: left;
-}
-nav.breadcrumbs.bootstrap .breadcrumb-item + .breadcrumb-item::before {
-  display: inline-block;
-  padding-right: 0.5rem;
-  padding-left: 0.5rem;
+
+nav.breadcrumbs.bootstrap .breadcrumb a {
+  font-size: 2rem;
+  padding: 0.75rem 0rem;
+  margin-bottom: 1rem;
+  list-style: none;
   color: #ffffff;
-  content: "/";
+  background-color: rgb(156, 101, 207);
 }
-nav.breadcrumbs.bootstrap .breadcrumb-item + .breadcrumb-item:hover::before {
+
+nav.breadcrumbs.bootstrap .breadcrumb a:hover {
   text-decoration: underline;
-}
-nav.breadcrumbs.bootstrap .breadcrumb-item + .breadcrumb-item:hover::before {
-  text-decoration: none;
-}
-nav.breadcrumbs.bootstrap .breadcrumb-item-active {
-  color: #ffffff;
-}
-
-nav.breadcrumbs.bootstrap .breadcrumb .icon {
-  display: inline-block;
-}
-nav.breadcrumbs.bootstrap .breadcrumb .icon svg {
-  height: 2rem;
-  width: 2rem;
-  stroke: #ffffff;
-  stroke-width: 5px;
-  padding: 5px 0px 0px 0px;
-}
-
-nav.breadcrumbs.bootstrap .breadcrumb .icon svg:hover {
-  stroke: rgb(215, 175, 253);
-  stroke-width: 5px;
 }
 </style>
