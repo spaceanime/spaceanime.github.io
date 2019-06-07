@@ -152,6 +152,7 @@ i {
 
 #footer a {
 	font-size: 25px;
+	color: #666;
 }
 
 #footer a:hover {
@@ -397,7 +398,7 @@ h1.post-title {
 
 #footer {
     border-top: 0px solid #dddddd;
-    color: #444;
+    color: #666;
 }
 
 
@@ -461,7 +462,7 @@ section#home-hero{
 .pagination a {
 	font-weight: bold;
 	font-size: 15px;
-	color: #444444;
+	color: #666;
 }
 
 .anilogo {
