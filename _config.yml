@@ -14,7 +14,3 @@ plugins:
   - jekyll-paginate
   - jekyll-sitemap
 paginate: 9
-breadcrumbs:
-  root:
-    hide: true  # show breadcrumbs on root/home page
-    image: true # Show image or title text
