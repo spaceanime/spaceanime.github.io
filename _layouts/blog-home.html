@@ -42,13 +42,12 @@
 			<div id='posts' class="leftblock">					
 				<ul>									
 						{% for post in paginator.posts %}
-						<li class='post'>							
-						
-								<a href='{{post.url}}'><img class='post-image' src="{{post.image}}" /></a>
-							
+						<li class='post'>
+							<a href='{{post.url}}'><img class='post-image' src="{{post.image}}" /></a>							
 							<div class="postcontent">
-					<a href='{{post.url}}'><h1 class='post-title'>{{post.title}}</h1></a>
-								<div class='post-content'>{{post.summary}}</div>
+							<a href='{{post.url}}'><h1 class='post-title'>{{post.title}}</h1></a>					
+							<div class='post-content'>{{post.summary}}</div>	
+							<p class='post-date'>{{post.date|date:"%d.%m.%Y"}}</p>							
 							</div>
 						</li>					
 						{% endfor %}				
