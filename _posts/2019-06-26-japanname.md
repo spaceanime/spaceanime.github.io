@@ -1,7 +1,7 @@
 ---
 title: Твоё имя на японском языке
 date: {}
-published: false
+published: true
 categories:
   - blog
 tags:
